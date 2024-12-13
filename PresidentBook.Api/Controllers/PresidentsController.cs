@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using Microsoft.AspNetCore.Mvc;
 using PresidentBook.Api.Models;
 
@@ -31,20 +29,23 @@ namespace PresidentBook.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<President> GetPresidentList(){
-           return  Ok(_context.Presidents.ToList());
+        public ActionResult<President> GetPresidentList()
+        {
+            return Ok(_context.Presidents.ToList());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<President> Get (int id){
+        public ActionResult<President> Get(int id)
+        {
 
-           var president = _context.Presidents.FirstOrDefault(p=>p.Id == id);
+            var president = _context.Presidents.FirstOrDefault(p => p.Id == id);
 
-           if(president is null){
-            return NotFound();
-           }
+            if (president is null)
+            {
+                return NotFound();
+            }
 
-           return Ok(president);
+            return Ok(president);
         }
 
         [HttpPut("{id}")]
@@ -69,6 +70,21 @@ namespace PresidentBook.Api.Controllers
             _context.SaveChanges();
 
             return Ok(presidentToUpdate);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var president = _context.Presidents.FirstOrDefault(p => p.Id == id);
+
+            if (president is null)
+            {
+                return NotFound();
+            }
+
+            _context.Presidents.Remove(president);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
