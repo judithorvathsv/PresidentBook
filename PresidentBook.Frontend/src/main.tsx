@@ -4,7 +4,7 @@ import App from './App.tsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import PresidentList from './components/PresidentList.tsx'
-//import PresidentEditForm from './components/PresidentEditForm.tsx'
+import PresidentEditForm from './components/PresidentEditForm.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <PresidentList/>
       },
       {
-        path:"presidents/:id",
-        //element: <PresidentEditForm />
+        path: "presidents/:id",
+        element: <PresidentEditForm />
       }
     ]
   }

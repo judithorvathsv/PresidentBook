@@ -17,7 +17,7 @@ namespace PresidentBook.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<President>> CreatePresident(President president)
+        public async Task<ActionResult<President>> Create(President president)
         {
             if (president == null)
             {
@@ -38,7 +38,7 @@ namespace PresidentBook.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<President> Get (int id){
 
-           var president = _context.Presidents.Where(p=>p.Id == id);
+           var president = _context.Presidents.FirstOrDefault(p=>p.Id == id);
 
            if(president is null){
             return NotFound();
