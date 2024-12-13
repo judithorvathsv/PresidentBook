@@ -34,5 +34,17 @@ namespace PresidentBook.Api.Controllers
         public ActionResult<President> GetPresidentList(){
            return  Ok(_context.Presidents.ToList());
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<President> Get (int id){
+
+           var president = _context.Presidents.Where(p=>p.Id == id);
+
+           if(president is null){
+            return NotFound();
+           }
+
+           return Ok(president);
+        }
     }
 }

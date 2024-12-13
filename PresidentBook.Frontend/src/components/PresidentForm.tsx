@@ -1,7 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 const PresidentForm = () => {
-    const [president, setPresident] = useState({ firstName: "", lastName: "", startYear: "", endYear: "", });
+    const [president, setPresident] = useState({ firstName: "", lastName: "", startYear: 0, endYear: 0, });
+    const [error, setError] = useState("");
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -24,9 +26,12 @@ const PresidentForm = () => {
             const result = await response.json();
             console.log("Success:", result);
         } catch (error) {
+            setError(error instanceof Error ? error.message : 'Error');
             console.error("Error:", error);
         }
     };
+
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <form onSubmit={handleSubmit}>
