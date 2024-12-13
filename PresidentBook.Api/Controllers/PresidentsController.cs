@@ -46,5 +46,29 @@ namespace PresidentBook.Api.Controllers
 
            return Ok(president);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<President> Update(int id, President president)
+        {
+            var presidentToUpdate = _context.Presidents.FirstOrDefault(p => p.Id == id);
+
+            if (presidentToUpdate is null)
+            {
+                return NotFound();
+            }
+
+            presidentToUpdate.FirstName = president.FirstName;
+            presidentToUpdate.LastName = president.LastName;
+            presidentToUpdate.StartYear = president.StartYear;
+            presidentToUpdate.EndYear = president.EndYear;
+
+            if (presidentToUpdate is null)
+            {
+                return BadRequest("Failed to update president");
+            }
+            _context.SaveChanges();
+
+            return Ok(presidentToUpdate);
+        }
     }
 }
