@@ -23,11 +23,16 @@ namespace PresidentBook.Api.Controllers
             {
                 return BadRequest("Fronted problem");
             }
-                       
+
             _context.Presidents.Add(president);
             await _context.SaveChangesAsync();
 
             return Ok(president);
+        }
+
+        [HttpGet]
+        public ActionResult<President> GetPresidentList(){
+           return  Ok(_context.Presidents.ToList());
         }
     }
 }
