@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.API\\PresidentBook.Api.csproj": {}
+    "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.Api\\PresidentBook.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.API\\PresidentBook.Api.csproj": {
+    "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.Api\\PresidentBook.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.API\\PresidentBook.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.Api\\PresidentBook.Api.csproj",
         "projectName": "PresidentBook.Api",
-        "projectPath": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.API\\PresidentBook.Api.csproj",
+        "projectPath": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.Api\\PresidentBook.Api.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.API\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\csharp\\20241213\\PresidentBook.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,16 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
