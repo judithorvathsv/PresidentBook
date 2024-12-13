@@ -2,6 +2,7 @@
 
 import './App.css'
 import PresidentForm from './components/PresidentForm'
+import PresidentList from './components/PresidentList'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <PresidentForm/>
+      <PresidentList/>
     
     </>
   )
