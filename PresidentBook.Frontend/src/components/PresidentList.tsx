@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import PresidentDetail from './PresidentDetail';
 import { PresidentProps } from '../interfaces';
+import PresidentForm from './PresidentForm';
 
 const PresidentList = () => {
     const [presidents, setPresidents] = useState<PresidentProps[]>([]);
@@ -26,19 +27,23 @@ const PresidentList = () => {
 
 
   return (
-    <ul>
+      <>
+          <PresidentForm />
+          <ul>
 
-    {!error && presidents.map((president) => (
-        <li key={president.id} >
-            <PresidentDetail 
-                id={president.id} 
-                firstName={president.firstName} 
-                lastName={president.lastName} 
-                startYear={president.startYear} 
-                endYear={president.endYear}/>
-        </li> 
-    ))}
-    </ul>
+              {!error && presidents.map((president) => (
+                  <li key={president.id} >
+                      <PresidentDetail
+                          id={president.id}
+                          firstName={president.firstName}
+                          lastName={president.lastName}
+                          startYear={president.startYear}
+                          endYear={president.endYear} />
+                  </li>
+              ))}
+          </ul>
+      </>
+
   )
 }
 
