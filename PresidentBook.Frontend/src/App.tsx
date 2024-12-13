@@ -1,17 +1,14 @@
 
 
 import './App.css'
-import PresidentForm from './components/PresidentForm'
-import PresidentList from './components/PresidentList'
+import { Outlet } from "react-router-dom";
 
 
 function App() {
 
   return (
     <>
-      <PresidentForm/>
-      <PresidentList/>
-    
+      <Outlet/>    
     </>
   )
 }

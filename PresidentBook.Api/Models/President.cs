@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,8 @@ namespace PresidentBook.Api.Models
 {
     public class President
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id { get; set; } 
 
         public string FirstName { get; set; }
 

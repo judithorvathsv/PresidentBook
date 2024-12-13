@@ -29,7 +29,14 @@ const PresidentList = () => {
     <ul>
 
     {!error && presidents.map((president) => (
-        <li ><PresidentDetail firstName={president.firstName} lastName={president.lastName} startYear={president.startYear} endYear={president.endYear}/></li> 
+        <li key={president.id} >
+            <PresidentDetail 
+                id={president.id} 
+                firstName={president.firstName} 
+                lastName={president.lastName} 
+                startYear={president.startYear} 
+                endYear={president.endYear}/>
+        </li> 
     ))}
     </ul>
   )
