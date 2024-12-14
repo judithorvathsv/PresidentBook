@@ -22,7 +22,7 @@ namespace PresidentBook.Api.Controllers
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 StartYear = request.StartYear,
-                EndYear = request.EndYear ?? 0
+                EndYear = request.EndYear
             };
 
             _context.Presidents.Add(president);
