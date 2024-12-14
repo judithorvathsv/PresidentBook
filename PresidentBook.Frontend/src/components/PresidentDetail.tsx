@@ -21,21 +21,24 @@ const PresidentDetail = ({id, firstName, lastName, startYear, endYear, handleGet
         });
 
         if (!response.ok) {
-            throw new Error("Failed to delete the president");
+          const errorData = await response.json();
+          setError(errorData.message); 
+          return;
         }
+     
         await handleGetPresident();
+        setError("");
         navigate('/api/v1/PresidentBook/presidents');
     
     } catch (error) {
         setError(error instanceof Error ? error.message : 'Error');
+        return;
     }
-
   }
-
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
+        {error && <p style={{color: 'red'}}>{error}</p>}
         <p>{firstName}</p>
         <p>{lastName}</p>
         <p>{startYear}</p>
