@@ -57,6 +57,10 @@ const PresidentEditForm = () => {
         setPresident((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleCancel = () =>{
+        navigate('/api/v1/PresidentBook/presidents');
+    }
+
     if (error) return <p>Error: {error}</p>;
 
     
@@ -91,6 +95,7 @@ const PresidentEditForm = () => {
                 onChange={handleChange}
             />
             <button type="submit">Save</button>
+            <button onClick={handleCancel}>Cancel</button>
         </form>
     );
 }
