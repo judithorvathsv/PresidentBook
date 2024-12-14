@@ -25,25 +25,31 @@ const PresidentList = () => {
     }, [])   
 
   return (
-      <>
-          <PresidentForm handleAddPresident={fetchPresidents}/>
-          <ul>
+    <div className="justify-items-center">
 
-              {!error && presidents.map((president) => (
-                  <li key={president.id} >
-                      <PresidentDetail
-                          id={president.id}
-                          firstName={president.firstName}
-                          lastName={president.lastName}
-                          startYear={president.startYear}
-                          endYear={president.endYear} 
-                          handleGetPresident = {fetchPresidents}/>
-                  </li>
-              ))}
-          </ul>
-      </>
+      <h1 className="text-xl font-bold mb-4 mt-4">
+        All Presidents in the United States
+      </h1>   
 
-  )
+      <PresidentForm handleAddPresident={fetchPresidents} />
+
+      <ul>
+        {!error &&
+          presidents.map((president) => (
+            <li key={president.id}>
+              <PresidentDetail
+                id={president.id}
+                firstName={president.firstName}
+                lastName={president.lastName}
+                startYear={president.startYear}
+                endYear={president.endYear}
+                handleGetPresident={fetchPresidents}
+              />
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
 }
 
 export default PresidentList
