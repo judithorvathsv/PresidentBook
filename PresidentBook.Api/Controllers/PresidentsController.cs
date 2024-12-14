@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PresidentBook.Api.Models;
 
 namespace PresidentBook.Api.Controllers
@@ -58,7 +59,7 @@ namespace PresidentBook.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<President> Update(int id, President president)
+        public ActionResult<President> Update(int id, UpdatePresidentRequest request)
         {
             var presidentToUpdate = _context.Presidents.FirstOrDefault(p => p.Id == id);
 
@@ -67,16 +68,19 @@ namespace PresidentBook.Api.Controllers
                 return NotFound();
             }
 
-            presidentToUpdate.FirstName = president.FirstName;
-            presidentToUpdate.LastName = president.LastName;
-            presidentToUpdate.StartYear = president.StartYear;
-            presidentToUpdate.EndYear = president.EndYear;
+            presidentToUpdate.FirstName = request.FirstName;
+            presidentToUpdate.LastName = request.LastName;
+            presidentToUpdate.StartYear = request.StartYear;
+            presidentToUpdate.EndYear = request.EndYear;
 
-            if (presidentToUpdate is null)
+            try
+            {
+                _context.SaveChanges(); 
+            }
+            catch (DbUpdateException)
             {
                 return BadRequest("Failed to update president");
             }
-            _context.SaveChanges();
 
             return Ok(presidentToUpdate);
         }
