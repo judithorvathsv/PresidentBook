@@ -33,11 +33,16 @@ const PresidentEditForm = () => {
 
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const updatedPresident = {
+            ...president,
+            startYear: president.startYear === "" ? 0 : parseInt(president.startYear), 
+            endYear: president.endYear === "" ? 0 : parseInt(president.endYear) 
+        };
         try {
             const response = await fetch(`http://localhost:5241/api/v1/presidents/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(president)
+                body: JSON.stringify(updatedPresident)
             });
 
             if (!response.ok) {
@@ -70,7 +75,7 @@ const PresidentEditForm = () => {
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target;   
         setPresident((prev) => ({ ...prev, [name]: value }));
     };
 
