@@ -1,9 +1,9 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const PresidentEditForm = () => {
     const { id } = useParams<{ id: string }>();
-
+    const navigate = useNavigate();
     const [president, setPresident] = useState({ firstName: "", lastName: "", startYear: "", endYear: "" });
     const [originalPresident, setOriginalPresident] = useState<{ firstName: string; lastName: string; startYear: number; endYear: number } | null>(null);
     const [error, setError] = useState("");
@@ -22,6 +22,7 @@ const PresidentEditForm = () => {
                 setPresident(result);
                 setOriginalPresident(result);
                 console.log("Success:", result);
+                
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Error');
                 console.error("Error:", error);
@@ -31,8 +32,7 @@ const PresidentEditForm = () => {
         getPresident();
     }, [id]);
 
-    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         try {
             const response = await fetch(`http://localhost:5241/api/v1/presidents/${id}`, {
                 method: "PUT",
@@ -46,6 +46,7 @@ const PresidentEditForm = () => {
 
             const result = await response.json();
             console.log("Success:", result);
+            navigate('/api/v1/PresidentBook/presidents');
         } catch (error) {
             setError(error instanceof Error ? error.message : 'Error');
         }
@@ -58,6 +59,7 @@ const PresidentEditForm = () => {
 
     if (error) return <p>Error: {error}</p>;
 
+    
     return (
         <form onSubmit={handleSubmit}>
             <input

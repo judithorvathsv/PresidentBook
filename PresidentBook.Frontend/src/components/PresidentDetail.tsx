@@ -23,6 +23,7 @@ const PresidentDetail = ({id, firstName, lastName, startYear, endYear}:President
         if (!response.ok) {
             throw new Error("Failed to delete the president");
         }
+        navigate('/api/v1/PresidentBook/presidents');
     
     } catch (error) {
         setError(error instanceof Error ? error.message : 'Error');

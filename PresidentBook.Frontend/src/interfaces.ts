@@ -5,3 +5,7 @@ export type PresidentProps = {
     startYear:number, 
     endYear:number
 }
+
+export type PresidentFormProps = {
+    handleAddPresident: () => void;
+}

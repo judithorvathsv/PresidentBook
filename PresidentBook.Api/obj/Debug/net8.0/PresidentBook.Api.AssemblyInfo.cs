@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PresidentBook.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c359765ca1fcb80c5eea513736a5c8ebd36a9b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1529d7fe9891f48ce75284d6634f543276f37271")]
 [assembly: System.Reflection.AssemblyProductAttribute("PresidentBook.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PresidentBook.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
