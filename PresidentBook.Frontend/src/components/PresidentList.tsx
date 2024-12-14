@@ -7,18 +7,35 @@ const PresidentList = () => {
   const [presidents, setPresidents] = useState<PresidentProps[]>([]);
   const [error, setError] = useState("");
 
-  const fetchPresidents = async () => {
-    try {
-      const response = await fetch("http://localhost:5241/api/v1/presidents");
-      if (!response.ok) {
-        throw new Error("Backend is not available");
-      }
-      const data = await response.json();
-      setPresidents(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error");
+const fetchPresidents = async () => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+ 
+    fetch("http://localhost:5241/api/v1/presidents", { signal })
+    .then((res) => {
+        if (!res.ok) {
+            throw new Error("Failed to fetch the president");
+        }
+        return res.json();
+    })
+    .then((data) => {
+        setPresidents(data);     
+        console.log("Success:", data);
+    })
+    .catch((error) => {
+        if(error.name === "AbortError"){
+            console.log("cancelled");
+        }
+        else{
+            setError(error instanceof Error ? error.message : "Error");
+            console.error("Error:", error);
+        }
+    });
+
+    return () => {
+        controller.abort();
     }
-  };
+}
 
   useEffect(() => {
     fetchPresidents();

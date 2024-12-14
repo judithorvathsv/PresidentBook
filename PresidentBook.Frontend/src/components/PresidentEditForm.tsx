@@ -19,27 +19,34 @@ const PresidentEditForm = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const getPresident = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5241/api/v1/presidents/${id}`
-        );
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch the president");
+    fetch(`http://localhost:5241/api/v1/presidents/${id}`, { signal })
+    .then((res) => {
+        if (!res.ok) {
+            throw new Error("Failed to fetch the president");
         }
+        return res.json();
+    })
+    .then((data) => {
+        setPresident(data);
+        setOriginalPresident(data);
+        console.log("Success:", data);
+    })
+    .catch((error) => {
+        if(error.name === "AbortError"){
+            console.log("cancelled");
+        }
+        else{
+            setError(error instanceof Error ? error.message : "Error");
+            console.error("Error:", error);
+        }
+    });
 
-        const result = await response.json();
-        setPresident(result);
-        setOriginalPresident(result);
-        console.log("Success:", result);
-      } catch (error) {
-        setError(error instanceof Error ? error.message : "Error");
-        console.error("Error:", error);
-      }
-    };
-
-    getPresident();
+    return () => {
+        controller.abort();
+    }
   }, [id]);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
