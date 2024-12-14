@@ -5,7 +5,12 @@ const PresidentEditForm = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const [president, setPresident] = useState({ firstName: "", lastName: "", startYear: "", endYear: "" });
-    const [originalPresident, setOriginalPresident] = useState<{ firstName: string; lastName: string; startYear: number; endYear: number } | null>(null);
+    const [originalPresident, setOriginalPresident] = useState<{
+      firstName: string;
+      lastName: string;
+      startYear: number;
+      endYear: number;
+    } | null>(null);
     const [error, setError] = useState("");
 
     useEffect(() => {
