@@ -27,14 +27,7 @@ namespace PresidentBook.Api.Controllers
             };
 
             _context.Presidents.Add(president);
-
-            int result = await _context.SaveChangesAsync();
- 
-            if (result <= 0)
-            {
-                return BadRequest("Failed to save president");
-            }
-
+            await _context.SaveChangesAsync(); 
             return CreatedAtAction(nameof(Get), new { id = president.Id }, president);
         }
 
@@ -72,16 +65,8 @@ namespace PresidentBook.Api.Controllers
             presidentToUpdate.LastName = request.LastName;
             presidentToUpdate.StartYear = request.StartYear;
             presidentToUpdate.EndYear = request.EndYear;
-
-            try
-            {
-                _context.SaveChanges(); 
-            }
-            catch (DbUpdateException)
-            {
-                return BadRequest("Failed to update president");
-            }
-
+    
+            _context.SaveChanges();         
             return Ok(presidentToUpdate);
         }
 
