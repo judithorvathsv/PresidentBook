@@ -51,7 +51,8 @@ const PresidentForm = ({handleAddPresident}:PresidentFormProps) => {
 
             const result = await response.json();
             console.log("Success:", result);
-            await handleAddPresident();            
+            await handleAddPresident();    
+            setError("");        
              
         } catch (error) {
             setError(error instanceof Error ? error.message : 'Error');
@@ -59,8 +60,7 @@ const PresidentForm = ({handleAddPresident}:PresidentFormProps) => {
             return; 
         }
  
-        setVisible(false);
-        setError("");
+        setVisible(false);      
     };  
 
     const errorMessages = error.split("*").map((message, index) => <p key={index}>{message}</p>);
@@ -79,7 +79,7 @@ const PresidentForm = ({handleAddPresident}:PresidentFormProps) => {
                     <input type="number" name="endYear" value={president.endYear} onChange={handleChange} />
 
                     <button type="submit">Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <button type="button" onClick={handleCancel}>Cancel</button>
                 </form>  
             </div> 
     );
