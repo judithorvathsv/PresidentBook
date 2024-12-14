@@ -1,9 +1,6 @@
-
-
-import { useNavigate } from 'react-router-dom';
-import {PresidentProps} from '../interfaces';
-import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
+import { PresidentProps } from "../interfaces";
+import { useState } from "react";
 
 const PresidentDetail = ({
   id,
@@ -36,7 +33,7 @@ const PresidentDetail = ({
         return;
       }
 
-      await handleGetPresident();
+      handleGetPresident();
       setError("");
       navigate("/api/v1/PresidentBook/presidents");
     } catch (error) {

@@ -1,5 +1,5 @@
-import { ChangeEvent, useState } from 'react'
-import { PresidentFormProps } from '../interfaces';
+import { ChangeEvent, useState } from "react";
+import { PresidentFormProps } from "../interfaces";
 
 const PresidentForm = ({ handleAddPresident }: PresidentFormProps) => {
   const [president, setPresident] = useState({
@@ -55,7 +55,7 @@ const PresidentForm = ({ handleAddPresident }: PresidentFormProps) => {
 
       const result = await response.json();
       console.log("Success:", result);
-      await handleAddPresident();
+      handleAddPresident();
       setError("");
     } catch (error) {
       setError(error instanceof Error ? error.message : "Error");
