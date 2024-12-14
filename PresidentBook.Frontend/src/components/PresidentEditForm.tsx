@@ -83,41 +83,83 @@ const PresidentEditForm = () => {
 
 
     return (
-        <div>
-            {error && <div style={{ color: 'red' }}>{errorMessages}</div>}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="firstName"
-                    placeholder={originalPresident ? originalPresident.firstName : "First Name"}
-                    value={president.firstName}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="lastName"
-                    placeholder={originalPresident ? originalPresident.lastName : "Last Name"}
-                    value={president.lastName}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="startYear"
-                    placeholder={originalPresident ? originalPresident.startYear.toString() : "Start Year"}
-                    value={president.startYear}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="endYear"
-                    placeholder={originalPresident ? originalPresident.endYear.toString() : "End Year"}
-                    value={president.endYear}
-                    onChange={handleChange}
-                />
-                <button type="submit">Save</button>
-                <button type="button" onClick={handleCancel}>Cancel</button>
-            </form>
-        </div>
+        <article className="p-8 justify-items-center">
+        {error && <div className="text-red-500 mb-4">{errorMessages}</div>}
+
+        <h2 className="font-bold mb-4 text-xl">Edit President</h2>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex flex-wrap gap-1">
+                <section className="flex flex-col flex-1">
+                    <label htmlFor="firstName" className="text-sm font-medium mb-1">First Name</label>
+                    <input
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        placeholder={originalPresident ? originalPresident.firstName : "First Name"}
+                        value={president.firstName}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded p-2"
+                    />
+                </section>
+                <section className="flex flex-col flex-1">
+                    <label htmlFor="lastName" className="text-sm font-medium mb-1">Last Name</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        placeholder={originalPresident ? originalPresident.lastName : "Last Name"}
+                        value={president.lastName}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded p-2"
+                    />
+                </section>
+            </div>
+
+            <div className="flex flex-wrap gap-1">
+                <section className="flex flex-col flex-1">
+                    <label htmlFor="startYear" className="text-sm font-medium mb-1">Start Year</label>
+                    <input
+                        type="text"
+                        name="startYear"
+                        id="startYear"
+                        placeholder={originalPresident ? originalPresident.startYear.toString() : "Start Year"}
+                        value={president.startYear}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded p-2"
+                    />
+                </section>
+                <section className="flex flex-col flex-1">
+                    <label htmlFor="endYear" className="text-sm font-medium mb-1">End Year</label>
+                    <input
+                        type="text"
+                        name="endYear"
+                        id="endYear"
+                        placeholder={originalPresident ? originalPresident.endYear.toString() : "End Year"}
+                        value={president.endYear}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded p-2"
+                    />
+                </section>
+            </div>
+
+            <section className="flex space-x-4 flex-wrap justify-center">
+                <button 
+                    type="submit" 
+                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                >
+                    Save
+                </button>
+                <button 
+                    type="button" 
+                    onClick={handleCancel} 
+                    className="bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-gray-400 transition duration-300"
+                >
+                    Cancel
+                </button>
+            </section>
+        </form>
+    </article>
     );
 }
 
