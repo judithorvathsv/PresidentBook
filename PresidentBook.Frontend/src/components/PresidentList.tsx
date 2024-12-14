@@ -36,7 +36,8 @@ const PresidentList = () => {
                           firstName={president.firstName}
                           lastName={president.lastName}
                           startYear={president.startYear}
-                          endYear={president.endYear} />
+                          endYear={president.endYear} 
+                          handleGetPresident = {fetchPresidents}/>
                   </li>
               ))}
           </ul>

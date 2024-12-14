@@ -5,7 +5,7 @@ import {PresidentProps} from '../interfaces';
 import { useState } from 'react';
 
 
-const PresidentDetail = ({id, firstName, lastName, startYear, endYear}:PresidentProps) => {
+const PresidentDetail = ({id, firstName, lastName, startYear, endYear, handleGetPresident}:PresidentProps) => {
   const navigate = useNavigate();
    const [error, setError] = useState("");
 
@@ -23,6 +23,7 @@ const PresidentDetail = ({id, firstName, lastName, startYear, endYear}:President
         if (!response.ok) {
             throw new Error("Failed to delete the president");
         }
+        await handleGetPresident();
         navigate('/api/v1/PresidentBook/presidents');
     
     } catch (error) {

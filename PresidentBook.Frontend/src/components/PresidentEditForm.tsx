@@ -21,8 +21,7 @@ const PresidentEditForm = () => {
                 const result = await response.json();
                 setPresident(result);
                 setOriginalPresident(result);
-                console.log("Success:", result);
-                
+                console.log("Success:", result);  
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Error');
                 console.error("Error:", error);
@@ -32,7 +31,8 @@ const PresidentEditForm = () => {
         getPresident();
     }, [id]);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e:ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
             const response = await fetch(`http://localhost:5241/api/v1/presidents/${id}`, {
                 method: "PUT",

@@ -22,7 +22,8 @@ const PresidentForm = ({handleAddPresident}:PresidentFormProps) => {
         setPresident((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async () => {  
+    const handleSubmit = async (e:ChangeEvent<HTMLFormElement>) => {  
+        e.preventDefault();
         try {
             const response = await fetch("http://localhost:5241/api/v1/presidents", {
                 method: "POST",
