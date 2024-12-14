@@ -15,17 +15,20 @@ namespace PresidentBook.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<President>> Create(President president)
+        public async Task<ActionResult<President>> Create(AddPresidentRequest request)
         {
-            if (president == null)
+            var president = new President
             {
-                return BadRequest("Fronted problem");
-            }
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                StartYear = request.StartYear,
+                EndYear = request.EndYear ?? 0
+            };
 
             _context.Presidents.Add(president);
             await _context.SaveChangesAsync();
 
-            return Ok(president);
+            return CreatedAtAction(nameof(Get), new { id = president.Id }, president);
         }
 
         [HttpGet]

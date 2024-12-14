@@ -39,7 +39,7 @@ const PresidentDetail = ({id, firstName, lastName, startYear, endYear, handleGet
         <p>{firstName}</p>
         <p>{lastName}</p>
         <p>{startYear}</p>
-        <p>{endYear}</p>
+        <p>{endYear === 0 || endYear === null ? "-" : endYear.toString()}</p>
         <button onClick={handleEdit}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
     </div>
