@@ -1,4 +1,4 @@
-//type FetchPresidentListProps =  () => void;
+type FetchPresidentListProps =  () => void;
 
 export type PresidentProps = {
     id:number,
@@ -6,9 +6,9 @@ export type PresidentProps = {
     lastName:string, 
     startYear:number, 
     endYear:number,
-    handleGetPresident: () => void;
+    handleGetPresident: FetchPresidentListProps;
 }
 
 export type PresidentFormProps = {
-    handleAddPresident: () => void;
+    handleAddPresident: FetchPresidentListProps;
 }
