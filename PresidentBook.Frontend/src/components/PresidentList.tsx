@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import PresidentDetail from "./PresidentDetail";
+import PresidentDetail from "./presidentDetail";
 import { PresidentProps } from "../interfaces";
-import PresidentForm from "./PresidentForm";
+import PresidentForm from "./presidentForm";
 
 const PresidentList = () => {
   const [presidents, setPresidents] = useState<PresidentProps[]>([]);
