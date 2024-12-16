@@ -66,7 +66,9 @@ namespace PresidentBook.Api.Controllers
             presidentToUpdate.FirstName = request.FirstName;
             presidentToUpdate.LastName = request.LastName;
             presidentToUpdate.StartYear = request.StartYear;
-            presidentToUpdate.EndYear = request.EndYear;               
+            presidentToUpdate.EndYear = request.EndYear;   
+
+            _context.SaveChanges();            
    
             return Ok(presidentToUpdate);
         }
