@@ -69,9 +69,16 @@ namespace PresidentBook.Api.Controllers
             presidentToUpdate.FirstName = request.FirstName;
             presidentToUpdate.LastName = request.LastName;
             presidentToUpdate.StartYear = request.StartYear;
-            presidentToUpdate.EndYear = request.EndYear;
-    
-            _context.SaveChanges();         
+            presidentToUpdate.EndYear = request.EndYear;    
+           
+            try
+            {
+                _context.SaveChanges(); 
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Failed to update president");
+            }      
             return Ok(presidentToUpdate);
         }
 
