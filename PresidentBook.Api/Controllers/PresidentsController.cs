@@ -26,8 +26,13 @@ namespace PresidentBook.Api.Controllers
                 EndYear = request.EndYear
             };
 
-            _context.Presidents.Add(president);
-            await _context.SaveChangesAsync(); 
+            _context.Presidents.Add(president);       
+
+            int result = await _context.SaveChangesAsync(); 
+            if (result <= 0)
+            {
+                return BadRequest("Failed to save president");
+            }
             return CreatedAtAction(nameof(Get), new { id = president.Id }, president);
         }
 
